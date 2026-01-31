@@ -4,7 +4,7 @@ import { NeonDialect } from 'kysely-neon';
 import { neon } from "@neondatabase/serverless";
 
 const dialect = new NeonDialect({
-  neon: neon(process.env.CONN_STRING)
+  neon: neon(process.env.DATABASE_URL as string),
 })
 
 export const db = new Kysely<Database>({
