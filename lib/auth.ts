@@ -1,7 +1,25 @@
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { NextRequest } from "next/server";
 
-export const isUserAuthenticatedAndHasAdminRole = async (req: NextRequest) => {
+export const isUserAuthenticated = async () => {
+    // Check if Kinde is configured
+    const kindeSiteUrl = process.env.KINDE_SITE_URL;
+    const kindeIssuerUrl = process.env.KINDE_ISSUER_URL;
+    
+    // If Kinde is not configured, return false (not authenticated)
+    if (!kindeSiteUrl || !kindeIssuerUrl) {
+        return false;
+    }
+    
+    try {
+        const {isAuthenticated} = getKindeServerSession();
+        return isAuthenticated();
+    } catch (error) {
+        // If there's an error with Kinde, assume not authenticated
+        return false;
+    }
+}   
+
+export const isUserAuthenticatedAndHasAdminRole = async () => {
     // Check if Kinde is configured
     const kindeSiteUrl = process.env.KINDE_SITE_URL;
     const kindeIssuerUrl = process.env.KINDE_ISSUER_URL;
