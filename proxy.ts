@@ -7,9 +7,9 @@ const isPathMatch = (route: string) => {
     return route.startsWith("/admin")
 }
 
-export default async function middleware(req: NextRequest) {
+export default async function proxy(req: NextRequest) {
   const route = req.nextUrl.pathname;
-  if (isPathMatch(route) && !await isUserAuthenticatedAndHasAdminRole()) {
+  if (isPathMatch(route) && !(await isUserAuthenticatedAndHasAdminRole())) {
     const homeURL = new URL("/", req.url);
     return NextResponse.redirect(homeURL);
   }
