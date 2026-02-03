@@ -85,9 +85,14 @@ const Home = () => {
                 </button>
               </div>
 
-              <div className="mt-4">
-                <PreferenceSelector responseCount={analytics?.responseCount} />
-              </div>
+                <div className="mt-4 flex items-center justify-between gap-4">
+                <div className="flex-1">
+                  <PreferenceSelector />
+                </div>
+                <div className="font-plus-jakarta-sans text-[13px] text-gray-600 whitespace-nowrap">
+                  <span className="font-semibold text-gray-900">{analytics?.responseCount}</span> answers provided so far
+                </div>
+                </div>
             </div>
 
             {/* CTA Buttons */}

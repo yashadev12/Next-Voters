@@ -5,11 +5,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import supportedRegions from '@/data/supported-regions';
 import { getPreference, setPreference } from '@/lib/preferences';
 
-type PreferenceSelectorProps = {
-  responseCount?: number | null;
-};
-
-const PreferenceSelector = ({ responseCount }: PreferenceSelectorProps) => {
+const PreferenceSelector = () => {
   const [selectedPreference, setSelectedPreference] = useState(getPreference());
   
   const handlePreferenceChange = (value: string) => {
@@ -25,8 +21,6 @@ const PreferenceSelector = ({ responseCount }: PreferenceSelectorProps) => {
 
   const countryOptions = Array.from(countryMap.values());
   const subRegionOptions = Array.from(subRegionMap.values());
-
-  const answersProvided: number | "—" = typeof responseCount === 'number' ? responseCount : "—";
 
   return (
     <div>
@@ -59,10 +53,6 @@ const PreferenceSelector = ({ responseCount }: PreferenceSelectorProps) => {
             ))}
           </SelectContent>
         </Select>
-
-        <div className="text-right font-plus-jakarta-sans text-[13px] text-gray-600 whitespace-nowrap">
-          <span className="font-semibold text-gray-900">{answersProvided}</span> answers provided so far
-        </div>
       </div>
     </div>
   )
