@@ -9,9 +9,6 @@ const headerItems: HeaderItem[] = [{
 }, {
     name: "Team",
     href: "/team"
-}, {
-    name: "Docs",
-    href: "/docs"
 }
 ]
 
