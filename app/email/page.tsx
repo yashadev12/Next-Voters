@@ -20,13 +20,13 @@ const EmailServiceProduct = () => {
             Changing the world comes from being educated!
           </p>
           
-            <input 
+          <input 
             className="w-full max-w-sm mb-4 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-transparent text-gray-900 text-[14px] font-plus-jakarta-sans"
             type="email"
             placeholder="Enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            />
+          />
 
           <select 
             className="w-full max-w-sm mb-6 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-transparent text-gray-900 text-[14px] font-plus-jakarta-sans"
