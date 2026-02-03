@@ -2,7 +2,7 @@
 
 import { db } from "@/lib/db"
 
-export const handleSubscribeEmail = async (email: string) => {
+export const handleSubscribeEmail = async (email: string, topics: string[]) => {
 
     const isEmailSubbed = await db
         .selectFrom("email_subscriptions")
@@ -13,7 +13,7 @@ export const handleSubscribeEmail = async (email: string) => {
     if (!isEmailSubbed) {
         await db
             .insertInto("email_subscriptions")
-            .values({ email })
+            .values({ email, topics })
             .execute()
     } else {
         return { error: "Email already subscribed" }

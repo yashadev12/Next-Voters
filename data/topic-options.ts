@@ -1,7 +1,7 @@
-const topics = [
+const topicOptions = [
     'Immigration',
     'Civil Rights',
     'Economy'
 ]
 
-export default topics
+export default topicOptions

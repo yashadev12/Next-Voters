@@ -24,7 +24,8 @@ export interface UserAdminRequestTable {
 }
 
 export interface EmailSubscriptionTable {
-  email: string
+  email: string,
+  topics: string[]
 }
 
 export type ChatCount = Selectable<ChatCountTable>
