@@ -1,18 +1,8 @@
 import { NextRequest, NextResponse } from "next/server"
 import nodemailer from "nodemailer"
 
-export const GET = async (request: NextRequest) => {
+export const sendEmail  = async (email) => {
   try {
-    const { searchParams } = new URL(request.url)
-    const to = searchParams.get("to")
-
-    if (!to) {
-      return NextResponse.json(
-        { success: false, error: "Missing `to` query parameter" },
-        { status: 400 }
-      )
-    }
-
     const transporter = nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
       port: Number(process.env.EMAIL_PORT),
@@ -24,8 +14,8 @@ export const GET = async (request: NextRequest) => {
     })
 
     await transporter.sendMail({
-      from: `"Next App" <${process.env.EMAIL_USER}>`,
-      to,
+      from: `Next Voters NO-REPLY`,
+      to: email,
       subject: "Confirmation Email",
       text: "Thank you for signing up to Next Voters Line!",
     })
