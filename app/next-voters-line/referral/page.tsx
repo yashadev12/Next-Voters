@@ -1,9 +1,14 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Mail } from 'lucide-react';
+import { useSearchParams } from 'next/navigation';
+import { sendReferralEmail } from '@/server-actions/send-referral-email';
 
 export default function NextVotersLineReferralPage() {
+  const searchParams = useSearchParams();
+  const referrerEmail = useMemo(() => (searchParams.get('referrer') ?? '').trim(), [searchParams]);
+
   const [referralEmail, setReferralEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [hasReferred, setHasReferred] = useState(false);
@@ -35,11 +40,22 @@ export default function NextVotersLineReferralPage() {
       return;
     }
 
-    // No backend for referrals yet — frontend only for now.
+    if (!referrerEmail) {
+      alert('Missing referrer email. Please restart signup.');
+      return;
+    }
+
     setIsSubmitting(true);
     try {
+      try {
+        await sendReferralEmail(referrerEmail, referralEmail.trim());
+      } catch (e) {
+        const message = e instanceof Error ? e.message : 'Unknown error';
+        alert(`Could not send referral email: ${message}`);
+        return;
+      }
       setHasReferred(true);
-      setNotice('Referral submitted!');
+      setNotice('Referral email sent!');
       setReferralEmail('');
       if (noticeTimerRef.current) {
         window.clearTimeout(noticeTimerRef.current);

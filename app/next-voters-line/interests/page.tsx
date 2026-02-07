@@ -22,6 +22,10 @@ export default function NextVotersLineInterestsPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const progressPercent = 66;
+  const referralUrl = useMemo(() => {
+    const referrer = encodeURIComponent(contact);
+    return `/next-voters-line/referral?referrer=${referrer}`;
+  }, [contact]);
 
   const toggleTopic = (topic: string) => {
     setSelected((prev) => {
@@ -51,18 +55,18 @@ export default function NextVotersLineInterestsPage() {
         // Keep UX stable even if env/DB isn't configured locally.
         const message = e instanceof Error ? e.message : 'Unknown error';
         alert(`Could not save interests right now: ${message}`);
-        router.push('/next-voters-line/referral');
+        router.push(referralUrl);
         return;
       }
 
       if (result?.error) {
         // Don't block the flow if they're already subscribed.
         alert(result.error);
-        router.push('/next-voters-line/referral');
+        router.push(referralUrl);
         return;
       }
 
-      router.push('/next-voters-line/referral');
+      router.push(referralUrl);
     } finally {
       setIsSubmitting(false);
     }
