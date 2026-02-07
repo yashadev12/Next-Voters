@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react';
 import { handleSubscribe } from '@/server-actions/sub-to-civicline';
 import topicOptions from '@/data/topic-options';
 import { PreferredCommunication } from '@/types/preferences';
+import { sendEmail } from '../../server-actions/send-confirmation-email';
 
 const EmailServiceProduct = () => {
   const [preferredCommunication, setPreferredCommunication] =
@@ -60,6 +61,7 @@ const EmailServiceProduct = () => {
       alert(result.error);
     } else {
       alert('Subscribed successfully!');
+      sendEmail(contact);
       setContact('');
       setTopics([]);
     }
