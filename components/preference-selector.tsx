@@ -58,4 +58,4 @@ const PreferenceSelector = () => {
   )
 }
 
-export default PreferenceS
+export default PreferenceSelector
