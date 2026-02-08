@@ -11,10 +11,45 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 })
 
 export const metadata: Metadata = {
-  title: 'Next Voters | AI-Powered Civic Education & Policy Analysis Platform',
+  title: 'Next Voters | AI-Powered Civic Education & Policy Analysis',
   description:
-    'Next Voters is an AI-powered civic education platform that helps young voters understand legislation, public policy, and North American politics through clear summaries, nonpartisan analysis, and real-world political context.',
+    'Next Voters is an AI-powered civic education platform helping students and young voters understand legislation, public policy, and North American politics through clear summaries and nonpartisan analysis.',
+
+  keywords: [
+    'AI civic education',
+    'political literacy',
+    'public policy explained',
+    'legislation summaries',
+    'voter education',
+    'youth politics',
+    'North American politics',
+    'nonpartisan political analysis',
+    'student civic engagement',
+    'AI policy analysis',
+  ],
+
+  robots: {
+    index: true,
+    follow: true,
+  },
+
+  openGraph: {
+    title: 'Next Voters | AI-Powered Civic Education',
+    description:
+      'Understand legislation and public policy with AI-driven summaries built for students and first-time voters.',
+    type: 'website',
+    locale: 'en_US',
+    siteName: 'Next Voters',
+  },
+
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Next Voters | AI Civic Education',
+    description:
+      'AI-powered explanations of legislation and public policy for the next generation of voters.',
+  },
 }
+
 
 export default function RootLayout({
   children,
