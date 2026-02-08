@@ -8,7 +8,7 @@ export async function GET(req: NextRequest) {
 
   const allowedHost = "ihzytkomakaqhkqdrval.supabase.co";
   let url: URL;
-  
+
   try {
     url = new URL(`https://${allowedHost}/storage/v1/object/public/${filePath}`);
     if (url.host !== allowedHost) {
@@ -19,7 +19,6 @@ export async function GET(req: NextRequest) {
   }
 
   const upstream = await fetch(url.toString(), {
-    // Optional: avoid cached wrong headers
     cache: "no-store",
   });
 
@@ -33,8 +32,6 @@ export async function GET(req: NextRequest) {
     status: 200,
     headers: {
       "Content-Type": "text/html; charset=utf-8",
-      // If your HTML references relative assets, this helps a bit:
-      // (still better to use absolute URLs in your HTML)
       "Cache-Control": "public, max-age=60",
     },
   });
