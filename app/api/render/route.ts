@@ -1,23 +1,24 @@
 import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
-  const url = req.nextUrl.searchParams.get("url");
-  if (!url) {
-    return new Response("Missing ?url=", { status: 400 });
+  const filePath = req.nextUrl.searchParams.get("path");
+  if (!filePath) {
+    return new Response("Missing ?path=", { status: 400 });
   }
 
-  // Basic safety: only allow your Supabase storage domain (avoid turning this into an open proxy)
   const allowedHost = "ihzytkomakaqhkqdrval.supabase.co";
+  let url: URL;
+  
   try {
-    const u = new URL(url);
-    if (u.host !== allowedHost) {
+    url = new URL(`https://${allowedHost}/storage/v1/object/public/${filePath}`);
+    if (url.host !== allowedHost) {
       return new Response("Host not allowed", { status: 403 });
     }
   } catch {
     return new Response("Bad url", { status: 400 });
   }
 
-  const upstream = await fetch(url, {
+  const upstream = await fetch(url.toString(), {
     // Optional: avoid cached wrong headers
     cache: "no-store",
   });
