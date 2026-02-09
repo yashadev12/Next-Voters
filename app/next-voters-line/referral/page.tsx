@@ -3,7 +3,7 @@
 import { Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { Mail } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
-import { sendConfirmationEmail, sendReferralEmail } from '@/server-actions/mailer';
+import { sendReferralEmail } from '@/server-actions/mailer';
 
 type ConfettiPiece = {
   id: string;
@@ -164,7 +164,6 @@ function NextVotersLineReferralInner() {
     try {
       try {
         await sendReferralEmail(referrerEmail, referralEmail.trim());
-        await sendConfirmationEmail(referralEmail.trim());
       } catch (e) {
         const message = e instanceof Error ? e.message : 'Unknown error';
         alert(`Could not send referral email: ${message}`);
