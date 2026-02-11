@@ -90,7 +90,7 @@ const Home = () => {
                   <PreferenceSelector />
                 </div>
                 <div className="font-plus-jakarta-sans text-[13px] text-gray-600 whitespace-nowrap">
-                  <span className="font-semibold text-gray-900">{analytics?.responseCount ?? "—"}</span> answers provided so far
+                  <span className="font-semibold text-gray-900">{analytics?.responseCount}</span> answers provided so far
                 </div>
                 </div>
             </div>
