@@ -10,7 +10,7 @@ export const teamMembers: TeamMember[] = [
     },
     {
       name: 'Hemit Patel',
-      role: 'CTO',
+      role: 'CTO and Board Director',
       image: '/profile-pics/hemit-patel.png',
       description: 'Software Engineer across 3 industries building for social impact; previously developed a free SAT prep platform with 80,000+ users.',
       linkedin: 'https://www.linkedin.com/in/hemit-patel-383ab3271/'
