@@ -167,7 +167,7 @@ const Home = () => {
               <img
                 src="/lookup-live-logo.png"
                 alt="LOOK UP"
-                className="h-32 object-contain"
+                className="h-16 object-contain"
               />
             </div>
           </div>
